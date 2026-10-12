@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cerro Escondido Lodge</title>
+<meta name="description" content="Proyecto de cabaña A-frame en Tomebamba, Paute: compra con crédito BIESS, plan de pagos familiar y operación como alojamiento de escapadas.">
+<meta property="og:title" content="Cerro Escondido Lodge · Tomebamba, Paute">
+<meta property="og:description" content="Plan de compra, crédito BIESS y operación de una cabaña de escapadas a una hora de Cuenca.">
+<meta property="og:image" content="media/hero.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f3ee; --surface:#ffffff; --ink:#1f2420; --muted:#5d655f; --line:#e2ddd4;
+  --forest:#2f4a3a; --forest-2:#3f6450; --rust:#a4552f; --gold:#c08a3e;
+  --ok:#2f7a4f; --warn:#b7791f; --bad:#b4483c;
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141815; --surface:#1c211d; --ink:#ecebe6; --muted:#a3aaa4; --line:#2e352f;
+    --forest:#8fbf9f; --forest-2:#6fa585; --rust:#dd8a5f; --gold:#e0b26a;
+    --ok:#6cc08f; --warn:#e3b45a; --bad:#e58376;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141815; --surface:#1c211d; --ink:#ecebe6; --muted:#a3aaa4; --line:#2e352f;
+  --forest:#8fbf9f; --forest-2:#6fa585; --rust:#dd8a5f; --gold:#e0b26a;
+  --ok:#6cc08f; --warn:#e3b45a; --bad:#e58376;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.15;margin:0 0 .5em}
+h2{font-size:clamp(1.7rem,3.6vw,2.4rem)}
+h3{font-size:1.2rem}
+p{margin:0 0 1em}
+a{color:var(--rust)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+section{padding:72px 0}
+.kicker{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);font-weight:600;margin-bottom:.6em}
+.lead{font-size:1.12rem;color:var(--muted);max-width:62ch}
+.muted{color:var(--muted)}
+.small{font-size:.86rem}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:18px;align-items:center;height:54px;overflow-x:auto;scrollbar-width:none}
+nav .brand{font-family:Fraunces,serif;font-weight:600;white-space:nowrap;margin-right:auto;color:var(--ink);text-decoration:none}
+nav a.l{color:var(--muted);text-decoration:none;font-size:.9rem;white-space:nowrap}
+nav a.l:hover{color:var(--ink)}
+
+/* hero */
+.hero{position:relative;min-height:88vh;display:grid;align-items:end;color:#fff;overflow:hidden;padding:0}
+.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,15,12,.15) 0%,rgba(10,15,12,.25) 45%,rgba(10,15,12,.85) 100%)}
+.hero .wrap{position:relative;z-index:2;padding-bottom:64px;padding-top:120px}
+.hero h1{font-size:clamp(2.4rem,7vw,4.6rem);margin-bottom:.2em}
+.hero p{font-size:clamp(1.05rem,2.2vw,1.3rem);max-width:46ch;opacity:.92}
+.hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.hero .tags span{border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:5px 12px;font-size:.85rem;backdrop-filter:blur(4px);background:rgba(0,0,0,.15)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:28px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.stat b{display:block;font-family:Fraunces,serif;font-size:1.8rem;font-weight:600;color:var(--forest)}
+.stat span{font-size:.86rem;color:var(--muted)}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:10px;margin-top:28px}
+.gallery figure{margin:0;position:relative;border-radius:12px;overflow:hidden;background:var(--line)}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.gallery figure:hover img{transform:scale(1.04)}
+.gallery figcaption{position:absolute;left:10px;bottom:8px;color:#fff;font-size:.82rem;text-shadow:0 1px 6px rgba(0,0,0,.7)}
+.gallery .t2{grid-row:span 2}
+@media (max-width:760px){.gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}}
+
+/* videos */
+.videos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.vcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.vcard video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000}
+.vcard div{padding:12px 14px}
+.vcard h3{font-size:1.02rem;margin:0 0 .2em}
+@media (max-width:760px){.videos{grid-template-columns:1fr;max-width:380px;margin-inline:auto}}
+
+/* cards */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:24px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.card h3{margin-bottom:.35em}
+.card p:last-child{margin-bottom:0}
+.pill{display:inline-block;font-size:.74rem;font-weight:600;padding:3px 9px;border-radius:999px;letter-spacing:.02em}
+.pill.ok{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+.pill.warn{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.pill.bad{background:color-mix(in srgb,var(--bad) 16%,transparent);color:var(--bad)}
+
+/* money flow */
+.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch;gap:10px;margin-top:28px}
+.flow .node{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.flow .node b{font-family:Fraunces,serif;font-size:1.5rem;display:block;color:var(--forest)}
+.flow .arrow{display:grid;place-items:center;color:var(--rust);font-size:1.6rem}
+@media (max-width:860px){.flow{grid-template-columns:1fr}.flow .arrow{transform:rotate(90deg);height:28px}}
+
+/* table */
+table{width:100%;border-collapse:collapse;font-size:.94rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+td.r,th.r{text-align:right}
+.tablebox{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow-x:auto;margin-top:22px}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:18px;margin-top:28px}
+@media (max-width:900px){.calc{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.panel h3{font-size:1.05rem;margin-bottom:14px}
+.field{margin-bottom:16px}
+.field label{display:flex;justify-content:space-between;font-size:.9rem;font-weight:500;margin-bottom:6px;gap:10px}
+.field label output{font-variant-numeric:tabular-nums;color:var(--forest);font-weight:600}
+input[type=range]{width:100%;accent-color:var(--forest)}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{flex:1;min-width:70px;border:1px solid var(--line);background:transparent;color:var(--ink);padding:8px;border-radius:10px;font:inherit;font-size:.88rem;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--forest);color:var(--bg);border-color:var(--forest)}
+.res{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.res .box{border:1px solid var(--line);border-radius:12px;padding:14px}
+.res .box span{font-size:.8rem;color:var(--muted);display:block}
+.res .box b{font-family:Fraunces,serif;font-size:1.45rem;font-weight:600;font-variant-numeric:tabular-nums}
+.res .box.hl{background:color-mix(in srgb,var(--forest) 10%,transparent);border-color:color-mix(in srgb,var(--forest) 35%,transparent)}
+.res .full{grid-column:1/-1}
+.verdict{margin-top:12px;padding:12px 14px;border-radius:12px;font-size:.92rem}
+.verdict.ok{background:color-mix(in srgb,var(--ok) 12%,transparent)}
+.verdict.warn{background:color-mix(in srgb,var(--warn) 14%,transparent)}
+.verdict.bad{background:color-mix(in srgb,var(--bad) 12%,transparent)}
+#chart{width:100%;height:auto;margin-top:12px}
+#chart text{fill:var(--muted);font-size:11px;font-family:Inter,sans-serif}
+
+/* scenarios */
+.bars{display:grid;gap:12px;margin-top:20px}
+.bar{display:grid;grid-template-columns:110px 1fr 90px;align-items:center;gap:12px;font-size:.92rem}
+.bar .track{position:relative;height:26px;background:color-mix(in srgb,var(--line) 60%,transparent);border-radius:6px}
+.bar .zero{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--muted)}
+.bar .fill{position:absolute;top:0;bottom:0;border-radius:4px}
+@media (max-width:560px){.bar{grid-template-columns:80px 1fr 70px;font-size:.84rem}}
+
+/* timeline */
+.steps{position:relative;margin-top:32px;display:grid;gap:14px}
+.step{display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:start}
+.step .n{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--forest);color:var(--bg);font-family:Fraunces,serif;font-size:1.3rem;font-weight:600}
+.step .card{padding:18px 20px}
+.step .when{font-size:.8rem;font-weight:600;color:var(--rust);text-transform:uppercase;letter-spacing:.08em}
+.step ul{margin:.4em 0 0;padding-left:1.1em}
+.step li{margin:.2em 0}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+.split img{border-radius:var(--radius);width:100%;aspect-ratio:4/5;object-fit:cover}
+
+.alert{border-left:4px solid var(--rust);background:var(--surface);border-radius:0 var(--radius) var(--radius) 0;padding:18px 20px;margin-top:22px}
+footer{padding:48px 0 64px;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+.alt .card,.alt .panel,.alt .stat{background:var(--bg)}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top">Cerro Escondido Lodge</a>
+  <a class="l" href="#propiedad">Propiedad</a>
+  <a class="l" href="#trato">El trato</a>
+  <a class="l" href="#biess">Crédito BIESS</a>
+  <a class="l" href="#simulador">Simulador</a>
+  <a class="l" href="#escenarios">Escenarios</a>
+  <a class="l" href="#negocio">Negocio</a>
+  <a class="l" href="#plan">Plan paso a paso</a>
+  <a class="l" href="#riesgos">Riesgos</a>
+</div></nav>
+
+<header class="hero" id="top">
+  <img class="poster" src="media/hero.jpg" alt="">
+  <video autoplay muted loop playsinline preload="metadata" poster="media/hero.jpg"><source src="media/dron.mp4" type="video/mp4"></video>
+  <div class="wrap">
+    <div class="kicker" style="color:#f1c9a5">Tomebamba · Paute · Azuay</div>
+    <h1>Cerro Escondido Lodge</h1>
+    <p>Una cabaña A-frame entre eucaliptos, con vista al valle del río Paute, a una hora de Cuenca. El plan: comprarla en familia, liberar a papá de su deuda y convertirla en un refugio de escapadas que pague su propio crédito.</p>
+    <div class="tags"><span>3 habitaciones</span><span>2 baños</span><span>Jacuzzi</span><span>Terraza + BBQ</span><span>Internet</span><span>Hasta 6 huéspedes</span></div>
+  </div>
+</header>
+
+<!-- RESUMEN -->
+<section>
+  <div class="wrap">
+    <div class="kicker">En una mirada</div>
+    <h2>Tres objetivos, un solo movimiento</h2>
+    <p class="lead">Papá vende la propiedad a su hijo a un precio familiar. El crédito hipotecario del BIESS se desembolsa al vendedor: con ese dinero papá cancela su deuda de inmediato. El saldo del precio que el banco no financia se le paga a papá mes a mes, con lo que genere la cabaña.</p>
+    <div class="stats">
+      <div class="stat"><b class="tnum">$70–80k</b><span>Precio familiar de compra (base de análisis: $75.000)</span></div>
+      <div class="stat"><b class="tnum">≈ $430</b><span>Cuota mensual estimada · $60.000 a 20 años al 5,99%</span></div>
+      <div class="stat"><b class="tnum">$60.000</b><span>Llegaría a papá en un solo desembolso para cancelar su deuda</span></div>
+      <div class="stat"><b class="tnum">12 noches</b><span>Al mes, aproximadamente, para que la cabaña cubra su crédito</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPIEDAD -->
+<section class="alt" id="propiedad">
+  <div class="wrap">
+    <div class="kicker">La propiedad</div>
+    <h2>Un destino en sí mismo</h2>
+    <p class="lead">El huésped no viene por los atractivos cercanos: viene a desconectarse. Jacuzzi, terraza colgada sobre el bosque, parrilla y una cocina equipada para quedarse dos o tres noches.</p>
+    <div class="gallery">
+      <figure class="t2"><img loading="lazy" src="media/cabana.jpg" alt="Cabaña A-frame vista desde el dron"><figcaption>La cabaña entre eucaliptos</figcaption></figure>
+      <figure><img loading="lazy" src="media/sala.jpg" alt="Sala con ventanal"><figcaption>Sala con ventanal</figcaption></figure>
+      <figure><img loading="lazy" src="media/cocina.jpg" alt="Cocina equipada"><figcaption>Cocina equipada</figcaption></figure>
+      <figure class="t2"><img loading="lazy" src="media/valle.jpg" alt="Vista del valle y el río Paute"><figcaption>Vista al valle del río Paute</figcaption></figure>
+      <figure><img loading="lazy" src="media/dormitorio.jpg" alt="Dormitorio principal"><figcaption>Dormitorio principal</figcaption></figure>
+      <figure><img loading="lazy" src="media/terraza.jpg" alt="Terraza con tumbonas"><figcaption>Terraza y tumbonas</figcaption></figure>
+      <figure><img loading="lazy" src="media/altillo.jpg" alt="Habitación en el altillo"><figcaption>Altillo bajo el techo A</figcaption></figure>
+      <figure><img loading="lazy" src="media/comedor.jpg" alt="Comedor exterior con vista"><figcaption>Comedor con vista</figcaption></figure>
+    </div>
+
+    <div class="videos">
+      <div class="vcard"><video controls playsinline preload="none" poster="media/hero.jpg"><source src="media/general.mp4" type="video/mp4"></video><div><h3>Video comercial</h3><p class="small muted">Recorrido general con música, listo para redes.</p></div></div>
+      <div class="vcard"><video controls playsinline muted preload="none" poster="media/entorno.jpg"><source src="media/dron.mp4" type="video/mp4"></video><div><h3>Exteriores con dron</h3><p class="small muted">Entorno, terraza y acceso desde el aire.</p></div></div>
+      <div class="vcard"><video controls playsinline muted preload="none" poster="media/cocina.jpg"><source src="media/interiores.mp4" type="video/mp4"></video><div><h3>Interiores</h3><p class="small muted">Cocina, baños, habitaciones y miradores.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EL TRATO -->
+<section id="trato">
+  <div class="wrap">
+    <div class="kicker">El trato familiar</div>
+    <h2>Cómo se mueve el dinero</h2>
+    <p class="lead">El BIESS no le presta el dinero al comprador para que lo use libremente: lo desembolsa al vendedor contra la escritura. Eso encaja con el objetivo. Papá recibe el monto financiado de una sola vez y cancela su deuda; el resto del precio queda como un compromiso mensual de hijo a padre.</p>
+    <div class="flow">
+      <div class="node"><span class="small muted">1 · Crédito BIESS (≈80% del avalúo)</span><b class="tnum">$60.000</b><p class="small muted" style="margin:0">Desembolso directo al vendedor tras inscribir la escritura y la hipoteca.</p></div>
+      <div class="arrow">→</div>
+      <div class="node"><span class="small muted">2 · Papá cancela su deuda</span><b class="tnum">Deuda: 100% saldada</b><p class="small muted" style="margin:0">Mismo mes del desembolso. Pedir certificado de cancelación como respaldo.</p></div>
+      <div class="arrow">→</div>
+      <div class="node"><span class="small muted">3 · Saldo del precio a papá</span><b class="tnum">$15.000</b><p class="small muted" style="margin:0">Pagos mensuales con el excedente del alojamiento, respaldados por un pagaré.</p></div>
+    </div>
+    <div class="alert">
+      <b>Importante para que el BIESS lo acepte:</b> el 20% que no financia el banco normalmente se registra como "entrada". Si papá la recibe a plazos, eso debe quedar <b>documentado de forma transparente</b> (escritura con saldo de precio o pagaré privado, según indique el notario y el propio BIESS). No conviene declarar en la escritura una entrada como pagada si no lo está.
+    </div>
+  </div>
+</section>
+
+<!-- BIESS -->
+<section class="alt" id="biess">
+  <div class="wrap">
+    <div class="kicker">Crédito hipotecario BIESS</div>
+    <h2>Qué producto y a qué tasa</h2>
+    <p class="lead">Tarifario publicado por el BIESS para 2026 (tasas nominales; la efectiva es 0,2 a 0,5 puntos mayor). Para una propiedad de $70–80 mil, el producto natural es <b>Vivienda Terminada</b>, en el tramo de hasta $90.000.</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Producto</th><th>Tramo / plazo</th><th class="r">Tasa nominal</th><th>¿Aplica aquí?</th></tr></thead>
+        <tbody>
+          <tr><td><b>Vivienda Terminada</b> (nueva o usada)</td><td>Hasta $90.000 · cualquier plazo hasta 25 años</td><td class="r tnum"><b>5,99%</b></td><td><span class="pill ok">Opción principal</span></td></tr>
+          <tr><td>Vivienda Preferencial</td><td>Vivienda de hasta $94.303</td><td class="r tnum">5,99–6,16%</td><td><span class="pill warn">Revisar requisitos</span></td></tr>
+          <tr><td>Vivienda Terminada</td><td>$90.000–130.000 · 10 / 15 / 25 años</td><td class="r tnum">6,99 / 7,99 / 8,90%</td><td><span class="pill warn">Solo si sube el monto</span></td></tr>
+          <tr><td>Credicasa / Vivienda Premier</td><td>Hasta $65.000, vivienda nueva, límite de ingresos</td><td class="r tnum">2,99–4,99%</td><td><span class="pill bad">Poco probable (usada)</span></td></tr>
+          <tr><td>Oficinas y locales comerciales</td><td>4 / 8 / 10 años</td><td class="r tnum">9,69–9,93%</td><td><span class="pill bad">Más caro</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted" style="margin-top:10px">Referencias: tarifario BIESS reportado por <a href="https://www.eluniverso.com/noticias/economia/prestamos-hipotecarios-en-el-biess-de-estos-tres-factores-depende-su-tasa-de-interes-nota/" target="_blank" rel="noopener">El Universo</a>, <a href="https://www.primicias.ec/economia/tasas-interes-creditos-hipotecarios-ecuador-junio-biess-plazos-requisitos-126377/" target="_blank" rel="noopener">Primicias (jun. 2026)</a> y <a href="https://www.teleamazonas.com/biess-prestamos-hipotecarios-requisitos/" target="_blank" rel="noopener">Teleamazonas</a>. No es una oferta: la tasa final la fija el BIESS al aprobar.</p>
+
+    <div class="grid3">
+      <div class="card"><h3>Lo que el BIESS mira</h3><p class="muted">36 aportaciones al IESS (las 12 últimas seguidas), que la cuota quepa en tu ingreso familiar (≈40% como tope) y el avalúo de su perito. Presta sobre el <b>menor</b> entre precio y avalúo.</p></div>
+      <div class="card"><h3>Cuánto financia</h3><p class="muted">Vivienda Terminada se ha publicado con financiamiento de hasta 95%, pero aquí se planifica con <b>80%</b> por prudencia. Si aprueban más, papá recibe más al inicio y el saldo mensual se reduce.</p></div>
+      <div class="card"><h3>Tres preguntas que confirmar por escrito</h3><p class="muted">1) ¿Acepta que el vendedor sea mi padre? 2) ¿Acepta una propiedad rural que se arrendará por noches? 3) ¿Puede quedar un saldo de precio a favor del vendedor?</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULADOR -->
+<section id="simulador">
+  <div class="wrap">
+    <div class="kicker">Simulador</div>
+    <h2>Juega con los números</h2>
+    <p class="lead">Mueve el precio, la tasa, la deuda de papá y el desempeño del alojamiento. Todo se recalcula: cuota, lo que recibe papá, y en cuántos meses terminas de pagarle el saldo.</p>
+
+    <div class="calc">
+      <div class="panel">
+        <h3>Compra y crédito</h3>
+        <div class="field"><label>Precio de compra <output id="o-price"></output></label><input id="price" type="range" min="70000" max="80000" step="1000" value="75000"></div>
+        <div class="field"><label>% que financia el BIESS <output id="o-ltv"></output></label><input id="ltv" type="range" min="60" max="95" step="5" value="80"></div>
+        <div class="field"><label>Tasa nominal anual <output id="o-rate"></output></label><input id="rate" type="range" min="4.99" max="9.99" step="0.25" value="5.99"></div>
+        <div class="field"><label>Plazo</label><div class="seg" id="term"><button data-v="15">15 años</button><button data-v="20" aria-pressed="true">20 años</button><button data-v="25">25 años</button></div></div>
+        <div class="field"><label>Deuda de papá a cancelar <output id="o-debt"></output></label><input id="debt" type="range" min="0" max="80000" step="1000" value="40000"></div>
+        <h3 style="margin-top:22px">Alojamiento (mes promedio)</h3>
+        <div class="field"><label>Noches vendidas al mes <output id="o-nights"></output></label><input id="nights" type="range" min="4" max="22" step="1" value="12"></div>
+        <div class="field"><label>Tarifa media por noche <output id="o-adr"></output></label><input id="adr" type="range" min="70" max="180" step="5" value="115"></div>
+        <div class="field"><label>% del excedente que va a papá <output id="o-share"></output></label><input id="share" type="range" min="50" max="100" step="5" value="70"></div>
+        <p class="small muted" style="margin:0">Costos supuestos: comisión 15%, limpieza $30 por reserva (estadía media 2,5 noches), $7 por noche en consumos, $325 fijos al mes y ≈$25 de seguros del crédito. El resto del excedente va a un fondo de reserva.</p>
+      </div>
+
+      <div class="panel">
+        <h3>Resultado</h3>
+        <div class="res">
+          <div class="box"><span>Crédito BIESS</span><b id="r-loan"></b></div>
+          <div class="box"><span>Cuota mensual (con seguros)</span><b id="r-pay"></b></div>
+          <div class="box hl"><span>Papá recibe al desembolso</span><b id="r-dad"></b></div>
+          <div class="box"><span>A papá le queda tras su deuda</span><b id="r-left"></b></div>
+          <div class="box"><span>Flujo del alojamiento antes de cuota</span><b id="r-op"></b></div>
+          <div class="box"><span>Excedente después de la cuota</span><b id="r-surplus"></b></div>
+          <div class="box hl"><span>Saldo pendiente con papá</span><b id="r-owed"></b></div>
+          <div class="box hl"><span>Pago mensual a papá</span><b id="r-dadpay"></b></div>
+          <div class="box full"><span>Saldo con papá terminado en</span><b id="r-months"></b></div>
+        </div>
+        <div id="verdict" class="verdict"></div>
+        <svg id="chart" viewBox="0 0 600 200" role="img" aria-label="Saldo pendiente con papá a lo largo del tiempo"></svg>
+        <p class="small muted" style="margin:6px 0 0">Saldo pendiente con papá mes a mes, contando desde la apertura (los primeros meses de adecuación no generan ingresos). Intereses totales del crédito: <b id="r-int"></b>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESCENARIOS -->
+<section class="alt" id="escenarios">
+  <div class="wrap">
+    <div class="kicker">Calculadora de escenarios</div>
+    <h2>¿Cuánto deja la cabaña en un mes?</h2>
+    <p class="lead">Pon cuántas noches se hospedan y a qué precio, ajusta los costos de limpieza y servicios, y mira el beneficio real del mes y del año.</p>
+    <div class="calc">
+      <div class="panel">
+        <h3>Ingresos</h3>
+        <div class="field"><label>Noches de fin de semana / feriado <output id="o-sw"></output></label><input id="s-wn" type="range" min="0" max="12" step="1" value="8"></div>
+        <div class="field"><label>Tarifa fin de semana <output id="o-swp"></output></label><input id="s-wp" type="range" min="80" max="220" step="5" value="145"></div>
+        <div class="field"><label>Noches entre semana <output id="o-sd"></output></label><input id="s-dn" type="range" min="0" max="18" step="1" value="4"></div>
+        <div class="field"><label>Tarifa entre semana <output id="o-sdp"></output></label><input id="s-dp" type="range" min="50" max="150" step="5" value="85"></div>
+        <div class="field"><label>Extras vendidos (kits BBQ, desayunos) <output id="o-sx"></output></label><input id="s-x" type="range" min="0" max="8" step="1" value="1"></div>
+        <h3 style="margin-top:22px">Costos</h3>
+        <div class="field"><label>Limpieza y lavandería por reserva <output id="o-sc"></output></label><input id="s-c" type="range" min="15" max="60" step="5" value="30"></div>
+        <div class="field"><label>Noches promedio por reserva <output id="o-ss"></output></label><input id="s-s" type="range" min="1" max="4" step="0.5" value="2"></div>
+        <div class="field"><label>Luz, agua, gas e insumos por noche <output id="o-sv"></output></label><input id="s-v" type="range" min="0" max="20" step="1" value="7"></div>
+        <div class="field"><label>Fijos al mes (internet, jacuzzi, mantenimiento, reserva) <output id="o-sf"></output></label><input id="s-f" type="range" min="150" max="600" step="25" value="325"></div>
+        <div class="field"><label>Comisión de plataforma <output id="o-sk"></output></label><input id="s-k" type="range" min="0" max="20" step="1" value="15"></div>
+        <div class="field"><label>Cuota BIESS a restar <output id="o-sq"></output></label><input id="s-q" type="range" min="0" max="700" step="5" value="455"></div>
+      </div>
+      <div class="panel">
+        <h3>Resultado del mes</h3>
+        <div class="tablebox" style="margin-top:0">
+          <table class="tnum" id="s-table"></table>
+        </div>
+        <svg id="s-chart" viewBox="0 0 600 64" style="width:100%;height:auto;margin-top:14px" role="img" aria-label="A dónde va cada dólar del ingreso"></svg>
+        <div class="res" style="margin-top:12px">
+          <div class="box"><span>Ocupación</span><b id="s-occ"></b></div>
+          <div class="box"><span>Tarifa media vendida</span><b id="s-adr"></b></div>
+          <div class="box hl"><span>Beneficio del mes</span><b id="s-net"></b></div>
+          <div class="box hl"><span>Beneficio del año (×12)</span><b id="s-year"></b></div>
+          <div class="box full"><span>Noches necesarias para cubrir todo (a la tarifa media actual)</span><b id="s-be"></b></div>
+        </div>
+        <p class="small muted" style="margin:10px 0 0">Extras: se cuenta solo el margen (≈$17 por kit), no el precio cobrado. Antes de impuestos y sin sueldo para quien administra.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEGOCIO -->
+<section id="negocio">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <div class="kicker">El negocio</div>
+        <h2>Vender fines de semana, no ocupación</h2>
+        <p class="lead">Cabaña completa para un solo grupo. La meta no es llenar todas las noches, sino vender bien viernes, sábados y feriados.</p>
+        <div class="tablebox">
+          <table>
+            <thead><tr><th>Tipo de noche</th><th class="r">Tarifa de prueba</th></tr></thead>
+            <tbody>
+              <tr><td>Lunes a miércoles</td><td class="r tnum">$75–85</td></tr>
+              <tr><td>Jueves y domingo</td><td class="r tnum">$85–105</td></tr>
+              <tr><td>Viernes</td><td class="r tnum">$120–145</td></tr>
+              <tr><td>Sábado</td><td class="r tnum">$135–165</td></tr>
+              <tr><td>Feriados</td><td class="r tnum">$160–190</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small muted" style="margin-top:10px">Para un grupo de 6, $150 la noche son $25 por persona. Mínimo 2 noches en fines de semana fuertes.</p>
+      </div>
+      <img loading="lazy" src="media/mirador.jpg" alt="Huésped en el mirador de la terraza">
+    </div>
+
+    <h3 style="margin-top:48px">Cuatro escenarios: ¿cuánto queda después de pagar la cuota?</h3>
+    <p class="muted small">Crédito de $60.000 a 20 años al 5,99% (≈$455 con seguros). Flujo mensual antes de impuestos.</p>
+    <div class="bars" id="bars"></div>
+
+    <div class="grid3" style="margin-top:36px">
+      <div class="card"><h3>Segmentos</h3><p class="muted">Familias y grupos de amigos de Cuenca (prioridad), parejas entre semana, visitantes de la Costa en feriados y vacaciones de Sierra.</p></div>
+      <div class="card"><h3>Extras con margen</h3><p class="muted">Kit BBQ ($45), desayuno para 6 ($48), decoración especial ($35). El jacuzzi va incluido: es la estrella, no un cobro adicional.</p></div>
+      <div class="card"><h3>Canales</h3><p class="muted">Airbnb como canal principal para reseñas; Instagram y TikTok con los videos de dron; reservas directas cuando haya reputación.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section class="alt" id="plan">
+  <div class="wrap">
+    <div class="kicker">Plan de acción</div>
+    <h2>Paso a paso, de hoy a la primera temporada</h2>
+    <p class="lead">Calendario realista desde octubre de 2026. La meta comercial es abrir antes de <b>Carnaval (8–9 de febrero de 2027)</b> y llegar rodados a Semana Santa.</p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><div class="card"><div class="when">Oct 2026 · semanas 1–3</div><h3>Validar antes de firmar</h3><ul>
+        <li>Precalificación en Biess en línea y consulta formal de las 3 preguntas (vendedor padre, uso por noches, saldo de precio).</li>
+        <li>Revisión de escrituras, certificado de gravámenes, uso de suelo y catastro en Paute.</li>
+        <li>Cotizar con un técnico la mejora del acceso vehicular y revisar jacuzzi, agua caliente y electricidad.</li>
+      </ul></div></div>
+      <div class="step"><div class="n">2</div><div class="card"><div class="when">Oct–Nov 2026</div><h3>Acuerdo familiar por escrito</h3><ul>
+        <li>Precio final, monto que cubre el BIESS y saldo a favor de papá.</li>
+        <li>Pagaré o cláusula de saldo de precio, con cuota mínima mensual y regla de pago del excedente.</li>
+        <li>Lista de deudas de papá que se cancelan con el desembolso, en orden de mayor tasa a menor.</li>
+      </ul></div></div>
+      <div class="step"><div class="n">3</div><div class="card"><div class="when">Nov 2026 – Ene 2027</div><h3>Trámite BIESS y escritura</h3><ul>
+        <li>Avalúo del perito calificado, aprobación y firma de escritura con hipoteca.</li>
+        <li>Inscripción en el Registro de la Propiedad y desembolso al vendedor.</li>
+        <li><b>Papá cancela su deuda esa misma semana</b> y guarda los certificados de cancelación.</li>
+      </ul></div></div>
+      <div class="step"><div class="n">4</div><div class="card"><div class="when">Ene 2027</div><h3>Adecuación y producción</h3><ul>
+        <li>Acceso seguro para autos bajos (o instrucciones claras y punto de encuentro), señalética, check-in autónomo.</li>
+        <li>Menaje, ropa de cama doble juego, protocolo de limpieza y persona local de confianza.</li>
+        <li>Fotos profesionales y edición de los videos de dron para el anuncio.</li>
+      </ul></div></div>
+      <div class="step"><div class="n">5</div><div class="card"><div class="when">Feb 2027</div><h3>Lanzamiento controlado</h3><ul>
+        <li>Publicación en Airbnb con tarifas de prueba; Carnaval como primera prueba de demanda.</li>
+        <li>Primeras reseñas, medición de tiempos de limpieza y costos reales por reserva.</li>
+      </ul></div></div>
+      <div class="step"><div class="n">6</div><div class="card"><div class="when">Cada mes, desde la apertura</div><h3>La regla del dinero</h3><ul>
+        <li><b>Primero</b> la cuota BIESS (débito automático). <b>Segundo</b> costos de operación. <b>Tercero</b> el excedente se divide: la parte acordada a papá y el resto a un fondo de reserva hasta juntar $3.000.</li>
+        <li>Si un mes no alcanza, la cuota se cubre con el sueldo, nunca con atraso al BIESS.</li>
+      </ul></div></div>
+      <div class="step"><div class="n">7</div><div class="card"><div class="when">Cada trimestre</div><h3>Revisar y ajustar</h3><ul>
+        <li>Ocupación, tarifa media, ingreso por noche disponible y flujo real frente al simulador.</li>
+        <li>Con 6 meses de datos: decidir si se acelera el pago a papá o se abona capital al BIESS.</li>
+      </ul></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RIESGOS -->
+<section id="riesgos">
+  <div class="wrap">
+    <div class="kicker">Riesgos y decisión</div>
+    <h2>Lo que puede cambiar el plan</h2>
+    <div class="split" style="align-items:start">
+      <div class="tablebox" style="margin-top:0">
+        <table>
+          <thead><tr><th>Riesgo</th><th>Nivel</th><th>Cómo se mitiga</th></tr></thead>
+          <tbody>
+            <tr><td>BIESS no acepta vendedor familiar o uso turístico</td><td><span class="pill bad">Crítico</span></td><td>Confirmación escrita antes de pagar avalúo.</td></tr>
+            <tr><td>Avalúo menor al precio</td><td><span class="pill warn">Alto</span></td><td>El saldo con papá crece; ajustar precio o plazo.</td></tr>
+            <tr><td>Acceso solo para autos altos</td><td><span class="pill bad">Crítico</span></td><td>Cotizar la vía; mientras tanto, describirlo con transparencia.</td></tr>
+            <tr><td>Demanda menor a la proyectada</td><td><span class="pill warn">Alto</span></td><td>Cuota cubierta con sueldo; fondo de reserva.</td></tr>
+            <tr><td>Jacuzzi y servicios</td><td><span class="pill warn">Medio</span></td><td>Mantenimiento mensual y persona local.</td></tr>
+            <tr><td>Permisos y SRI</td><td><span class="pill warn">Medio</span></td><td>Registro turístico y facturación desde el inicio.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <img loading="lazy" src="media/acceso.jpg" alt="Vista aérea del camino de acceso" style="aspect-ratio:4/3">
+        <p class="small muted" style="margin-top:8px">El camino de acceso visto desde el dron: es el punto a resolver con más prioridad.</p>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div class="card"><span class="pill ok">Avanzar</span><h3 style="margin-top:8px">Si…</h3><p class="muted">El BIESS confirma por escrito, el avalúo cubre el precio y la cuota cabe en tu sueldo aunque la cabaña tarde en arrancar.</p></div>
+      <div class="card"><span class="pill warn">Ajustar</span><h3 style="margin-top:8px">Si…</h3><p class="muted">El acceso exige más de lo previsto o el avalúo sale bajo: bajar el precio familiar o alargar el plazo del saldo con papá.</p></div>
+      <div class="card"><span class="pill bad">Esperar</span><h3 style="margin-top:8px">Si…</h3><p class="muted">El BIESS no financia esta operación. Alternativa: banco privado (≈7,35% promedio) o cooperativa, recalculando en el simulador.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>Cerro Escondido Lodge</b> · Tomebamba, camino a Guarumales, Paute, Azuay, Ecuador.</p>
+    <p>Documento de planificación elaborado en octubre de 2026. Las tasas provienen del tarifario BIESS publicado en 2026 y pueden cambiar; tarifas, ocupación y costos son hipótesis de trabajo, no proyecciones garantizadas ni una oferta de crédito. Antes de firmar, confirmar condiciones con el BIESS, un abogado y un notario.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const fmt = n => (n<0?'−':'') + '$' + Math.round(Math.abs(n)).toLocaleString('es-EC');
+  const INS = 25, FIXED = 325, COMM = .15, CLEAN = 30, STAY = 2.5, PERNIGHT = 7;
+  let term = 20;
+
+  function pmt(P, rate, years){ const i = rate/12, n = years*12; return P*i/(1-Math.pow(1+i,-n)); }
+  function opFlow(nights, adr){
+    const gross = nights*adr;
+    return gross - gross*COMM - Math.ceil(nights/STAY)*CLEAN - nights*PERNIGHT - FIXED;
+  }
+
+  document.querySelectorAll('#term button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('#term button').forEach(x => x.setAttribute('aria-pressed', x===b));
+    term = +b.dataset.v; calc();
+  }));
+  ['price','ltv','rate','debt','nights','adr','share'].forEach(id => $(id).addEventListener('input', calc));
+
+  function calc(){
+    const price = +$('price').value, ltv = +$('ltv').value/100, rate = +$('rate').value/100;
+    const debt = +$('debt').value, nights = +$('nights').value, adr = +$('adr').value, share = +$('share').value/100;
+    $('o-price').textContent = fmt(price); $('o-ltv').textContent = Math.round(ltv*100)+'%';
+    $('o-rate').textContent = (rate*100).toFixed(2).replace('.',',')+'%'; $('o-debt').textContent = fmt(debt);
+    $('o-nights').textContent = nights + ' (' + Math.round(nights/30*100) + '%)'; $('o-adr').textContent = fmt(adr);
+    $('o-share').textContent = Math.round(share*100)+'%';
+
+    const loan = price*ltv, owed = price - loan;
+    const cuota = pmt(loan, rate, term), pay = cuota + INS;
+    const op = opFlow(nights, adr), surplus = op - pay;
+    const dadPay = Math.max(0, surplus*share);
+
+    $('r-loan').textContent = fmt(loan);
+    $('r-pay').textContent = fmt(pay);
+    $('r-dad').textContent = fmt(loan);
+    $('r-left').textContent = fmt(loan - debt);
+    $('r-left').style.color = loan - debt < 0 ? 'var(--bad)' : '';
+    $('r-op').textContent = fmt(op);
+    $('r-surplus').textContent = fmt(surplus);
+    $('r-surplus').style.color = surplus < 0 ? 'var(--bad)' : 'var(--ok)';
+    $('r-owed').textContent = fmt(owed);
+    $('r-dadpay').textContent = fmt(dadPay);
+    $('r-int').textContent = fmt(cuota*term*12 - loan);
+
+    let months = dadPay > 0 ? Math.ceil(owed/dadPay) : Infinity;
+    if (owed <= 0) months = 0;
+    const v = $('verdict');
+    if (months === 0){ $('r-months').textContent = 'No queda saldo'; }
+    else if (!isFinite(months)){ $('r-months').textContent = 'Sin excedente para pagar'; }
+    else {
+      const d = new Date(2027, 1 + months, 1); // apertura: feb 2027
+      const y = Math.floor(months/12), m = months%12;
+      $('r-months').textContent = months + ' meses' + (y ? ' (' + y + ' a ' + m + ' m)' : '') + ' · ' + d.toLocaleDateString('es-EC',{month:'long',year:'numeric'});
+    }
+    if (loan < debt){ v.className='verdict bad'; v.textContent = 'El desembolso no alcanza para cancelar toda la deuda de papá. Sube el % financiado o el precio, o cubre la diferencia con el saldo mensual.'; }
+    else if (surplus < 0){ v.className='verdict bad'; v.textContent = 'Con este desempeño la cabaña no cubre su cuota: faltarían ' + fmt(-surplus) + ' al mes que saldrían de tu sueldo, y el saldo con papá no avanza.'; }
+    else if (months > 60){ v.className='verdict warn'; v.textContent = 'La cabaña paga su crédito, pero el saldo con papá tomaría más de 5 años. Conviene subir la tarifa en feriados, buscar más financiamiento del BIESS o fijar una cuota mínima desde tu sueldo.'; }
+    else { v.className='verdict ok'; v.textContent = 'La cabaña cubre su crédito y libera ' + fmt(dadPay) + ' al mes para papá, además de ' + fmt(surplus-dadPay) + ' para el fondo de reserva.'; }
+
+    drawChart(owed, dadPay);
+  }
+
+  function drawChart(owed, dadPay){
+    const svg = $('chart'), W=600, H=200, L=48, B=26, T=10, R=10;
+    const horizon = 60; let s='';
+    const css = getComputedStyle(document.documentElement);
+    const line = css.getPropertyValue('--line').trim(), forest = css.getPropertyValue('--forest').trim(), rust = css.getPropertyValue('--rust').trim();
+    const x = m => L + (W-L-R)*m/horizon, y = v => T + (H-T-B)*(1 - v/Math.max(owed,1));
+    for (let k=0;k<=4;k++){ const v=owed*k/4; s += `<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="${line}"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${v>=1000?'$'+Math.round(v/1000)+'k':'$0'}</text>`; }
+    for (let m=0;m<=horizon;m+=12){ s += `<text x="${x(m)}" y="${H-6}" text-anchor="middle">${m===0?'Apertura':'Año '+m/12}</text>`; }
+    let pts=[], bal=owed, done=null;
+    for (let m=0;m<=horizon;m++){ pts.push(`${x(m).toFixed(1)},${y(Math.max(bal,0)).toFixed(1)}`); if(bal<=0 && done===null) done=m; bal -= dadPay; }
+    s += `<polyline fill="none" stroke="${forest}" stroke-width="2.5" points="${pts.join(' ')}"/>`;
+    if (done!==null && done>0) s += `<circle cx="${x(done)}" cy="${y(0)}" r="5" fill="${rust}"/><text x="${Math.min(x(done),W-60)}" y="${y(0)-10}" text-anchor="middle" style="fill:${rust};font-weight:600">Saldado</text>`;
+    svg.innerHTML = s;
+  }
+
+  // escenarios fijos
+  const sc = [['Prudente',9,95],['Base',12,115],['Favorable',15,130],['Excelente',18,140]];
+  const pay = pmt(60000,.0599,20)+INS, vals = sc.map(([n,ni,a]) => [n, ni, a, opFlow(ni,a)-pay]);
+  const min = Math.min(0,...vals.map(v=>v[3])), max = Math.max(...vals.map(v=>v[3])), span = max-min;
+  const zero = (-min/span)*100;
+  $('bars').innerHTML = vals.map(([n,ni,a,v]) => {
+    const w = Math.abs(v)/span*100, left = v<0 ? zero-w : zero;
+    return `<div class="bar"><div><b>${n}</b><br><span class="small muted">${ni} noches · $${a}</span></div><div class="track"><div class="zero" style="left:${zero}%"></div><div class="fill" style="left:${left}%;width:${w}%;background:${v<0?'var(--bad)':'var(--forest-2)'}"></div></div><div class="tnum r" style="text-align:right;font-weight:600;color:${v<0?'var(--bad)':'var(--ok)'}">${v<0?'−':'+'}$${Math.round(Math.abs(v))}</div></div>`;
+  }).join('');
+
+  // calculadora de escenarios
+  const EXTRA_MARGIN = 17;
+  ['s-wn','s-wp','s-dn','s-dp','s-x','s-c','s-s','s-v','s-f','s-k','s-q'].forEach(id => $(id).addEventListener('input', scen));
+  function scen(){
+    const wn=+$('s-wn').value, wp=+$('s-wp').value, dn=+$('s-dn').value, dp=+$('s-dp').value, x=+$('s-x').value;
+    const c=+$('s-c').value, st=+$('s-s').value, v=+$('s-v').value, f=+$('s-f').value, k=+$('s-k').value/100, q=+$('s-q').value;
+    $('o-sw').textContent=wn; $('o-swp').textContent=fmt(wp); $('o-sd').textContent=dn; $('o-sdp').textContent=fmt(dp);
+    $('o-sx').textContent=x; $('o-sc').textContent=fmt(c); $('o-ss').textContent=String(st).replace('.',',');
+    $('o-sv').textContent=fmt(v); $('o-sf').textContent=fmt(f); $('o-sk').textContent=Math.round(k*100)+'%'; $('o-sq').textContent=fmt(q);
+    const nights=wn+dn, gross=wn*wp+dn*dp, comm=gross*k, res=nights?Math.ceil(nights/st):0;
+    const clean=res*c, serv=nights*v, extras=x*EXTRA_MARGIN, op=gross+extras-comm-clean-serv-f, net=op-q;
+    const rows=[['Hospedaje ('+nights+' noches)',gross,1],['Margen de extras',extras,1],['Comisión plataforma',-comm],['Limpieza ('+res+' reservas)',-clean],['Servicios por noche',-serv],['Costos fijos',-f],['Utilidad operativa',op,2],['Cuota BIESS',-q],['Beneficio neto',net,2]];
+    $('s-table').innerHTML='<tbody>'+rows.map(([l,val,t])=>`<tr${t===2?' style="font-weight:600"':''}><td>${l}</td><td class="r" style="color:${t===2?(val<0?'var(--bad)':'var(--ok)'):(val<0?'var(--muted)':'')}">${fmt(val)}</td></tr>`).join('')+'</tbody>';
+    $('s-occ').textContent=Math.round(nights/30*100)+'%';
+    const adr=nights?gross/nights:0; $('s-adr').textContent=fmt(adr);
+    $('s-net').textContent=fmt(net); $('s-net').style.color=net<0?'var(--bad)':'var(--ok)';
+    $('s-year').textContent=fmt(net*12); $('s-year').style.color=net<0?'var(--bad)':'var(--ok)';
+    // punto de equilibrio: margen por noche a la tarifa media
+    const perNight=adr*(1-k)-v-c/st;
+    const be=perNight>0?Math.ceil((f+q-extras)/perNight):Infinity;
+    $('s-be').textContent=isFinite(be)?be+' noches al mes'+(be>30?' (imposible: sube la tarifa)':''):'La tarifa no cubre los costos por noche';
+    // barra: a dónde va el ingreso
+    const total=gross+extras, css=getComputedStyle(document.documentElement);
+    const parts=[['Comisión',comm,'--muted'],['Limpieza',clean,'--gold'],['Servicios',serv,'--warn'],['Fijos',f,'--rust'],['Cuota',q,'--forest'],['Queda',Math.max(net,0),'--ok']];
+    let xx=0, s='';
+    if(total>0){ parts.forEach(([n,val,col])=>{ const w=Math.min(val/total,1-xx/600)*600; if(w<=0)return; s+=`<rect x="${xx}" y="0" width="${w}" height="30" fill="${css.getPropertyValue(col).trim()}"/>`; if(w>48) s+=`<text x="${xx+w/2}" y="48" text-anchor="middle" style="fill:${css.getPropertyValue('--muted').trim()};font:11px Inter,sans-serif">${n} ${Math.round(val/total*100)}%</text>`; xx+=w; });
+      if(net<0) s+=`<text x="598" y="62" text-anchor="end" style="fill:${css.getPropertyValue('--bad').trim()};font:600 11px Inter,sans-serif">Faltan ${fmt(-net)} para cubrir todo</text>`; }
+    $('s-chart').innerHTML=s;
+  }
+
+  calc(); scen();
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { calc(); scen(); });
+})();
+</script>
+</body>
+</html>
